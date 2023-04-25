@@ -21,10 +21,10 @@ module.exports = class Gardener extends LivingCreature{
 
 
 
-    chooseCell(char2) {
+    chooseCell(char) {
         this.getNewCoordinates()
   
-        return super.chooseCell(char2)
+        return super.chooseCell(char)
     }
 
 

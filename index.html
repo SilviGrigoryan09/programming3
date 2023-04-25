@@ -13,7 +13,7 @@
         }
         body{
             background: rgb(2,0,36);
-            background: linear-gradient(90deg, rgb(0, 25, 36) 0%, rgb(88, 16, 195) 42%, rgb(255, 0, 234) 83%);
+            background: linear-gradient(90deg, rgb(0, 25, 36) 0%, rgb(88, 16, 195) 42%, rgb(201, 22, 186) 83%);
         }
 
         h1{
@@ -40,12 +40,17 @@
             text-align: center;
         }
     </style>
-    
+   
 </head>
 <body>
    <h1>GAME OF LIFE</h1>
    <h2>Silvi Grigoryan</h2>
    <h3>Teacher Karlen</h3>
+   <button onclick = "AddGrass()" class = "add__btn" style = "background-color: greenyellow; width: 100px ; height: 60px;" >Add Grass</button>
+   <button onclick = "AddGrassEater()" class = "add__btn" style = "background-color: rgb(47, 203, 255); width: 100px ; height: 55px;" >Add GrassEater"</button>
+   <button onclick = "AddPredator()" class = "add__btn" style = "background-color: red; width: 100px ; height: 50px;" >Add Predator</button>
+   <button onclick = "AddFlower()" class = "add__btn" style = "background-color: violet; width: 100px ; height: 45px;" >Add Flower</button>
+   <button onclick = "AddGardener()" class = "add__btn" style = "background-color: magenta; width: 100px ; height: 40px;" >Add Gardener</button>
 
    <script src="/socket.io/socket.io.js"></script>
    <script src="https://cdn.jsdelivr.net/npm/p5@1.5.0/lib/p5.js"></script>

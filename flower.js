@@ -1,7 +1,7 @@
 let LivingCreature = require ("./LivingCreature")
 module.exports = class Flower extends LivingCreature{
     constructor(x, y) {
-        super(x.y)
+        super(x,y)
         this.energy = 16
         this.directions = [];
     }
@@ -59,7 +59,8 @@ module.exports = class Flower extends LivingCreature{
         let emptyCell = this.chooseCell(3)
         let newCell = emptyCell[Math.floor(Math.random() * emptyCell.length)]
 
-           if(newCell ){
+           if(newCell){
+
                this.energy+=12
             let newX = newCell[0]
             let newY = newCell[1]
@@ -87,21 +88,21 @@ module.exports = class Flower extends LivingCreature{
            }
 
            if(this.energy < 0){
-            this.die ()
+            // this.die ()
            }
      }
 
 
-     die(){
-        matrix[this.y][this.x] = 0
+//      die(){
+//         matrix[this.y][this.x] = 0
 
-          for(let i in flowerArr){
-                   if(this.x == flowerArr[i].x && this.y == flowerArr[i].y) {
-                             flowerArr.splice(i,1)
-                   }
-    }
+//           for(let i in flowerArr){
+//                    if(this.x == flowerArr[i].x && this.y == flowerArr[i].y) {
+//                              flowerArr.splice(i,1)
+//                    }
+//     }
     
    
-}
+// }
 
 }

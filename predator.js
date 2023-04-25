@@ -86,7 +86,7 @@ module.exports = class Predator extends LivingCreature{
                     grassEaterArr.splice(i, 1)
                 }
             }
-
+ 
 
             matrix[newY][newX] = 3
             matrix[this.y][this.x] = 0
