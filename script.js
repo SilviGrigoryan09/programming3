@@ -35,3 +35,21 @@ function changeColor(matrix) {
 
 socket.on('send matrix',changeColor)
 
+function kill() {
+        socket.emit("kill")
+    }
+    function AddGrass() {
+        socket.emit("AddGrass")
+    }
+    function AddGrassEater() {
+        socket.emit("AddGrassEater")
+    }
+    function AddPredator() {
+        socket.emit("AddPredator")
+    }
+    function AddFlower() {
+        socket.emit("AddFlower")
+    }
+    function AddFlower() {
+        socket.emit("AddGardener")
+    }
