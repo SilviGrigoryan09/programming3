@@ -1,14 +1,16 @@
 var socket = io()
 let side = 30
+var weath = 'summer';
 
 function setup() {
-       
+
         createCanvas(20 * side, 20 * side)
 }
 
 function changeColor(matrix) {
         for (let y = 0; y < matrix.length; y++) {
                 for (let x = 0; x < matrix[y].length; x++) {
+                        
                         if (matrix[y][x] == 1) {
                                 fill("blue")
                         }
@@ -22,34 +24,36 @@ function changeColor(matrix) {
                                 fill("aqua")
                         } else if (matrix[y][x] == 5) {
                                 fill("magenta")
-                        }else{
+                        } else {
                                 fill("gray")
                         }
                         rect(x * side, y * side, side, side)
 
                 }
 
-        } 
-        
+        }
+
 }
 
-socket.on('send matrix',changeColor)
+socket.on('send matrix', changeColor)
 
 function kill() {
         socket.emit("kill")
-    }
-    function AddGrass() {
+}
+function AddGrass() {
         socket.emit("AddGrass")
-    }
-    function AddGrassEater() {
+}
+function AddGrassEater() {
         socket.emit("AddGrassEater")
-    }
-    function AddPredator() {
+}
+function AddPredator() {
         socket.emit("AddPredator")
-    }
-    function AddFlower() {
+}
+function AddFlower() {
         socket.emit("AddFlower")
-    }
-    function AddFlower() {
+}
+function AddGardener() {
         socket.emit("AddGardener")
-    }
+}
+
+

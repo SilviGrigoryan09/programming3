@@ -133,9 +133,9 @@ function createObject() {
 }
 
 
-function game(){
+function game() {
 
-        
+
         for (let i in grassArr) {
                 grassArr[i].mul()
         }
@@ -162,14 +162,14 @@ function game(){
         io.sockets.emit('send matrix', matrix)
 }
 
-setInterval(game,300)
+setInterval(game, 300)
 
-io.on('connection',function(){
+io.on('connection', function () {
         createObject()
 })
 
-var  statistics = {}
-setInterval(function(){
+var statistics = {}
+setInterval(function () {
         statistics.grass = grassArr.length
         statistics.grassEater = grassEaterArr.length
         statistics.flower = flowerArr.length
@@ -178,7 +178,7 @@ setInterval(function(){
         fs.writeFile('statistics.json', JSON.stringify(statistics), function () {
 
         })
-}, 1000); 
+}, 1000);
 
 
 function kill() {
@@ -187,80 +187,121 @@ function kill() {
         grassPredator = [];
         fireArr = [];
         for (var y = 0; y < matrix.length; y++) {
-            for (var x = 0; x < matrix[y].length; x++) {
-                matrix[y][x] = 0;
-            }
-        }
-        io.sockets.emit("send matrix", matrix);
-    }
-    function AddGrass() {
-        for (var i = 0; i < 7; i++) {
-        var x = Math.floor(Math.random() * matrix[0].length)
-        var y = Math.floor(Math.random() * matrix.length)
-            if (matrix[y][x] == 0) {
-                matrix[y][x] = 1
-                var gr = new Grass(x, y, 1)
-                grassArr.push(gr)
-            }
-        }
-        io.sockets.emit("send matrix", matrix);
-    }
-    function AddGrassEater() {
-        for (var i = 0; i < 8; i++) {   
-        var x = Math.floor(Math.random() * matrix[0].length)
-        var y = Math.floor(Math.random() * matrix.length)
-            if (matrix[y][x] == 0) {
-                matrix[y][x] = 2
-                grassEaterArr.push(new GrassEater(x, y, 2))
-            }
-        }
-        io.sockets.emit("send matrix", matrix);
-    }
-    
-    function addPredator() {
-        for (var i = 0; i < 5; i++) {
-        var x = Math.floor(Math.random() * matrix[0].length)
-        var y = Math.floor(Math.random() * matrix.length)
-            if (matrix[y][x] == 0) {
-                matrix[y][x] = 3
-                var pr = new GrassPredator(x, y, 3)
-                grassPredator.push(pr)
-            }
-        }
-        io.sockets.emit("send matrix", matrix);
-    }
-        function AddFlower() {
-            for (var i = 0; i < 5; i++) {
-            var x = Math.floor(Math.random() * matrix[0].length)
-            var y = Math.floor(Math.random() * matrix.length)
-                if (matrix[y][x] == 0) {
-                    matrix[y][x] = 4
-                    var fi = new Fire(x, y, 4)
-                    fireArr.push(fi)
+                for (var x = 0; x < matrix[y].length; x++) {
+                        matrix[y][x] = 0;
                 }
-            }
-            io.sockets.emit("send matrix", matrix);
-    }
-    function AddGardener() {
-        for (var i = 0; i < 9; i++) {
-        var x = Math.floor(Math.random() * matrix[0].length)
-        var y = Math.floor(Math.random() * matrix.length)
-            if (matrix[y][x] == 0) {
-                matrix[y][x] = 5
-                var fi = new Fire(x, y, 5)
-                fireArr.push(fi)
-            }
+        }
+        io.sockets.emit("send matrix", matrix);
+}
+function AddGrass() {
+        for (var i = 0; i < 7; i++) {
+                var x = Math.floor(Math.random() * matrix[0].length)
+                var y = Math.floor(Math.random() * matrix.length)
+                if (matrix[y][x] == 0) {
+                        matrix[y][x] = 1
+                        var gr = new Grass(x, y, 1)
+                        grassArr.push(gr)
+                }
+        }
+        io.sockets.emit("send matrix", matrix);
+}
+function AddGrassEater() {
+        for (var i = 0; i < 8; i++) {
+                var x = Math.floor(Math.random() * matrix[0].length)
+                var y = Math.floor(Math.random() * matrix.length)
+                if (matrix[y][x] == 0) {
+                        matrix[y][x] = 2
+                        grassEaterArr.push(new GrassEater(x, y, 2))
+                }
         }
         io.sockets.emit("send matrix", matrix);
 }
 
-io.on('connection', function (socket) {
-        createObject();
-        socket.on("kill", kill);
-        socket.on("AddGrass", AddGrass);
-        socket.on("AddGrassEater", AddGrassEater);
-        socket.on("AddPredator", addPredator);
-        socket.on("AddFlower", AddFlower);
-        socket.on("AddGardener", AddGardener);
-    });
-    
+function addPredator() {
+        for (var i = 0; i < 5; i++) {
+                var x = Math.floor(Math.random() * matrix[0].length)
+                var y = Math.floor(Math.random() * matrix.length)
+                if (matrix[y][x] == 0) {
+                        matrix[y][x] = 3
+                        var pr = new GrassPredator(x, y, 3)
+                        grassPredator.push(pr)
+                }
+        }
+        io.sockets.emit("send matrix", matrix);
+}
+function AddFlower() {
+        for (var i = 0; i < 5; i++) {
+                var x = Math.floor(Math.random() * matrix[0].length)
+                var y = Math.floor(Math.random() * matrix.length)
+                if (matrix[y][x] == 0) {
+                        matrix[y][x] = 4
+                        var fi = new Fire(x, y, 4)
+                        fireArr.push(fi)
+                }
+        }
+        io.sockets.emit("send matrix", matrix);
+}
+function AddGardener() {
+        for (var i = 0; i < 9; i++) {
+                var x = Math.floor(Math.random() * matrix[0].length)
+                var y = Math.floor(Math.random() * matrix.length)
+                if (matrix[y][x] == 0) {
+                        matrix[y][x] = 5
+                        var fi = new Fire(x, y, 5)
+                        fireArr.push(fi)
+                }
+        }
+        io.sockets.emit("send matrix", matrix);
+}
+
+// io.on('connection', function (socket) {
+//         createObject();
+//         socket.on("kill", kill);
+//         socket.on("AddGrass", AddGrass);
+//         socket.on("AddGrassEater", AddGrassEater);
+//         socket.on("AddPredator", addPredator);
+//         socket.on("AddFlower", AddFlower);
+//         socket.on("AddGardener", AddGardener);
+// });
+
+
+// function weather() {
+//         if (weath == "winter") {
+//                 weath = "spring"
+//         }
+//         else if (weath == "spring") {
+//                 weath = "summer"
+//         }
+//         else if (weath == "summer") {
+//                 weath = "autumn"
+//         }
+//         else if (weath == "autumn") {
+//                 weath = "winter"
+//         }
+//         io.sockets.emit('weather', weath)
+// }
+// setInterval(weather, 4000);
+
+// io.on('connection', function (socket) {
+//         createObject();
+//         socket.on("kill", kill);
+//         socket.on("AddGrass", AddGrass);
+//         socket.on("AddGrassEater", AddGrassEater);
+//         socket.on("AddGrassPredator", AddPredator);
+//         socket.on("AddFlower",AddFlower);
+//         socket.on("AddGardener",AddGardener);
+
+// });
+
+// var statistics = {};
+
+// setInterval(function () {
+//         statistics.grass = grassArr.length;
+//         statistics.grassEater = grassEaterArr.length;
+//         statistics.predator = predatorArr.length;
+//         statistics.flower = flowerArr.length;
+//         statistics.gardener = gardenerArr.length;
+//         fs.writeGardener("statistics.json", JSON.stringify(statistics), function () {
+//                 console.log("send")
+//         })
+// }, 1000)
