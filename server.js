@@ -250,7 +250,7 @@ function Summer() {
         weath = "summer";
         io.sockets.emit('Summer', weath);
 }
-
+//Spring
 function Spring() {
         weath = "spring";
         io.sockets.emit('Spring', weath);
