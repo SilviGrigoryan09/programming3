@@ -6,13 +6,36 @@ function setup() {
 
         createCanvas(20 * side, 20 * side)
 }
-
+socket.on("Winter", function (data) {
+        weath = data;
+    })
+    socket.on("Summer", function (data) {
+        weath = data;
+    })
+    socket.on("Spring", function (data) {
+        weath = data;
+    })
+    socket.on("Autumn", function (data) {
+        weath = data;
+    })
+     var weath = "spring";
 function changeColor(matrix) {
         for (let y = 0; y < matrix.length; y++) {
                 for (let x = 0; x < matrix[y].length; x++) {
                         
                         if (matrix[y][x] == 1) {
+                                if (weath == "spring"){
                                 fill("blue")
+                        }
+                        else if (weath == "summer") {
+                                fill("#79a83b");
+                            }
+                            else if (weath == "autumn") {
+                                fill("white");
+                            }
+                            if (weath == "winter") {
+                                fill("purple");
+                            }
                         }
                         else if (matrix[y][x] == 2) {
                                 fill("yellow")
@@ -33,7 +56,7 @@ function changeColor(matrix) {
 
         }
 
-}
+
 
 socket.on('send matrix', changeColor)
 
@@ -55,5 +78,16 @@ function AddFlower() {
 function AddGardener() {
         socket.emit("AddGardener")
 }
-
-
+function Summer(){
+        socket.emit("Summer")
+}
+function Spring(){
+        socket.emit("Spring")
+}
+function Autumn(){
+        socket.emit("Autumn")
+}
+function Winter(){
+        socket.emit("Winter")
+}
+}
